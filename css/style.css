@@ -1,0 +1,99 @@
+@import url(style.css);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    background-color:#1e1d2b;
+    grid-template-areas: 
+    " logo . menue menue"
+    " enc enc . ."
+    " enc enc . ."
+    ". . . ."
+    ;
+}
+
+
+
+.item_1{
+    color: #ff702a;
+    grid-area: logo;
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+    width: 100%;
+    height: 90%;
+
+}
+.item_1 h1{
+    font-size: 6vh;
+    font-weight: normal;
+}
+
+
+
+
+.item_2{
+    grid-area: menue;
+    display: flex;
+    justify-content: center;
+    margin-top: 6vh;
+}  
+.menu li {
+    display: inline;
+}
+.menu a{
+    padding: 2.5vh;
+    color: white;
+    text-decoration: none;
+    list-style: none;
+    font-size: 3vh;
+}
+a:hover{
+    color:rgb(97, 246, 196);
+}
+
+
+
+
+
+.item_3{
+    margin-left: 30%;
+    grid-area: enc;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+.titulo3{
+    color: #ff702a;
+    font-size: 10vh;
+    font-weight: bold;
+}
+.content3{
+    color: white;
+    font-weight: normal;
+    font-size: 4vh;
+}
+.boton{
+    padding: 2% 7%;
+    margin-top: 5%;
+    color: white;
+    background-color:#ff702a ;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 100%;
+}
+.boton:hover{
+    cursor: pointer;
+}
