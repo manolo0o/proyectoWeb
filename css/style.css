@@ -16,9 +16,9 @@ body{
     background-color:#1e1d2b;
     grid-template-areas: 
     " logo . menue menue"
-    " enc enc . ."
-    " enc enc . ."
-    ". . . ."
+    " enc enc img img"
+    " enc enc img img"
+    ". . img img"
     ;
 }
 
@@ -67,11 +67,12 @@ a:hover{
 
 
 .item_3{
+    margin-top: 10%;
     margin-left: 30%;
     grid-area: enc;
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items:start ;
     flex-direction: column;
 }
 .titulo3{
@@ -93,7 +94,24 @@ a:hover{
     border-radius: 10px;
     font-weight: bold;
     font-size: 100%;
-}
-.boton:hover{
     cursor: pointer;
 }
+.boton:hover{
+    color: #ff702a;
+    background-color: white;
+}
+
+
+
+
+.item_4{
+    grid-area: img;
+    display: flex;
+    justify-content: center;
+
+}
+.img img{
+    width: 70vh;
+    height: 60vh;
+}
+
