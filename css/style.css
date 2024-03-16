@@ -392,3 +392,59 @@ a:hover{
     color: #ff702a;
     background-color: white;
 }
+
+
+
+
+.section_6{
+    width: 100%;
+    height: 45vh;
+    background-color:#1e1d2b;
+}
+
+
+
+.item_12 footer{
+    display: flex;
+    justify-content: center;
+}
+.item_12 h2{
+    color: white;
+    font-weight: normal;
+    font-size: 5vh;
+}
+.item_12 ul, a{
+    color: white;
+    list-style: none;
+    text-decoration: none;
+    font-size: 3vh;
+}
+.item_12 .menuServices{
+    margin-right:10vh ;
+    margin-left: 10vh;
+}
+.item_12 .contactUs{
+    margin-left: 10vh;
+}
+.item_12 .lineOrange{
+    width: 12vh;
+    height: 2px;
+    background-color:#ff702a;
+    margin-bottom: 2.5vh;
+}
+
+
+.icon1{
+    display: inline;
+    padding: 1.2vh;
+    background-color:#ff702a ;
+    border-radius: 100px;
+    cursor: pointer;
+    margin-right: 1vh;
+}
+.bx{
+    color: white;
+    font-size: 3.5vh;
+
+}
+
