@@ -5,21 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.menuHorizontal').click(function(e) {
+            e.preventDefault(); 
+            var target = $(this).attr('href'); 
+            $('.section').removeClass('active'); 
+            $(target).addClass('active'); 
+
+            $('html, body').animate({
+                scrollTop: $(target).offset().top
+            }, 1000);
+        });
+    });
+</script>
     <title>Parte_1</title>
 </head>
 <body>
-    <section class="section_1">
+    <section id="section_1">
         <div class="item_1">
             <h1>Foods</h1>
         </div>
         <div class="item_2">
             <nav class="menu">
                 <ul>
-                    <li><a class="menuHorizontal" href="#">Home</a></li>
-                    <li><a class="menuHorizontal" href="#">About</a></li>
-                    <li><a class="menuHorizontal" href="#">Menu</a></li>
-                    <li><a class="menuHorizontal" href="#">Service</a></li>
-                    <li><a class="menuHorizontal" href="#">Contact</a></li>
+                    <li><a class="menuHorizontal" href="#section_1">Home</a></li>
+                    <li><a class="menuHorizontal" href="#section_2">About</a></li>
+                    <li><a class="menuHorizontal" href="#section_3">Menu</a></li>
+                    <li><a class="menuHorizontal" href="#section_4">Service</a></li>
+                    <li><a class="menuHorizontal" href="#section_5">Contact</a></li>
                 </ul>
         </nav>
     </div>
@@ -34,20 +49,20 @@
         </div>
     </div>
     </section>
-    <section class="section_2">
-        <div class="item_5">
-            <img src="/imgs/about.png" alt="" class="imgsection2">
-        </div>
-        <div class="item_6">
-            <h3>About Us</h3>
-            <h1>We Speak the good <br> Food lenguage.</h1>
-            <p>It is a long established fact that a 
-                be distracted by the readable content 
-                looking at its layout. The point of</p>
-                <button class="boton2">Learn More</button>
+    <section id="section_2">    
+            <div  class="item_5">
+                <img src="/imgs/about.png" alt="" class="imgsection2">
             </div>
+            <div class="item_6">
+                <h3>About Us</h3>
+                <h1>We Speak the good <br> Food lenguage.</h1>
+                <p>It is a long established fact that a 
+                    be distracted by the readable content 
+                    looking at its layout. The point of</p>
+                    <button class="boton2">Learn More</button>
+                </div>
         </section>
-        <section class="section_3">
+        <section id="section_3">
             <div class="item_7">
                 <h3>Food Menu</h3>
                 <h1>Fresh taste and grat price</h1>
@@ -73,7 +88,7 @@
                 </div>
             </div>
         </section>
-        <section class="section_4">
+        <section id="section_4">
             <div class="item_9">
                 <h3>Services</h3>
                 <h1>We provide best food services</h1>
@@ -102,7 +117,7 @@
                 </div>
             </div>
         </section>
-        <section class="section_5">
+        <section id="section_5">
             <div class="item_11">
                 <div class="containerInfo">
                     <h1>We make quality food <br> Everyday</h1>
@@ -110,18 +125,18 @@
                 </div>
             </div>
         </section>
-        <section class="section_6">
+        <section id="section_6">
             <div class="item_12">   
                 <footer>
                     <div class="menulinks">
                         <h2>Menu links</h2>
                         <div class="lineOrange"></div>
                         <ul>
-                            <li><a class="menuVertical" href="#">Home</a></li>
-                            <li><a class="menuVertical" href="#">About</a></li>
-                            <li><a class="menuVertical" href="#">Menu</a></li>
-                            <li><a class="menuVertical" href="#">Service</a></li>
-                            <li><a class="menuVertical" href="#">Contact</a></li>
+                            <li><a class="menuHorizontal" href="#section_1">Home</a></li>
+                            <li><a class="menuHorizontal" href="#section_2">About</a></li>
+                            <li><a class="menuHorizontal" href="#section_3">Menu</a></li>
+                            <li><a class="menuHorizontal" href="#section_4">Service</a></li>
+                            <li><a class="menuHorizontal" href="#section_5">Contact</a></li>
                         </ul>
                     </div>
                     <div class="menuServices">

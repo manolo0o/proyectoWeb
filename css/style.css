@@ -7,7 +7,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.section_1{
+#section_1{
     width: 100%;
     height: 100vh;
     display: grid;
@@ -111,14 +111,15 @@ a:hover{
 
 }
 .img img{
-    width: 70vh;
-    height: 60vh;
+    width: 100%;
+    height: 90%;
+    object-fit: contain;
 }
 
 
 
 
-.section_2{
+#section_2{
     width: 100%;
     height: 100vh;
     display: grid;
@@ -188,7 +189,7 @@ a:hover{
 
 
 
-.section_3{
+#section_3{
     width: 100%;
     height: 100vh;
     display: grid;
@@ -277,7 +278,7 @@ a:hover{
 
 
 
-.section_4{
+#section_4{
     width: 100%;
     height: 80vh;
     display: grid;
@@ -346,7 +347,7 @@ a:hover{
 
 
 
-.section_5{
+#section_5{
     width: 100%;
     height: 80vh;
     background-color:#1e1d2b;
@@ -396,7 +397,7 @@ a:hover{
 
 
 
-.section_6{
+#section_6{
     width: 100%;
     height: 45vh;
     background-color:#1e1d2b;
@@ -436,9 +437,9 @@ a:hover{
 
 .icon1{
     display: inline;
-    padding: 1.1vh;
+    padding: 1.1vh 1.5vh;
     background-color:#ff702a ;
-    border-radius: 100px;
+    border-radius: 11vh;
     cursor: pointer;
     margin-right: 1vh;
 }
@@ -448,3 +449,12 @@ a:hover{
 
 }
 
+.section {
+    height: 100vh;
+    opacity: 0;
+    transition: opacity 0.3s ease; 
+}
+
+.section.active {
+    opacity: 1;
+}
