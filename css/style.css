@@ -500,7 +500,7 @@ a:hover{
         align-items: center;
     }
     .item_3 h1{
-        font-size: 3.5rem;
+        font-size: 8vw;
         font-weight: normal;
     }
     .item_3 .boton{
@@ -508,7 +508,7 @@ a:hover{
         margin-top: 2.5vh;
     }
     .item_3 h3{
-        font-size: 1.6em;
+        font-size: 4vw;
     }
     .item_4 {
         grid-area: img ;
@@ -525,6 +525,7 @@ a:hover{
 
 
     #section_2{
+        height: auto;
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(8, 1fr);
         grid-template-areas: 
@@ -544,7 +545,7 @@ a:hover{
         align-items: center;
     }
     .item_5 .imgsection2{
-        height: 75%;
+        height: 55vw;
     }
 
     .item_6{
@@ -556,7 +557,7 @@ a:hover{
     }
 
     .item_6 h1{
-        font-size: 1.6rem;
+        font-size: 5.5vw;
         margin-bottom: 1.5vh;
     }
     .item_6 h3{
@@ -565,12 +566,14 @@ a:hover{
         margin-bottom: 1.3vh;
     }
     .item_6 p{
-        font-size: 1.2rem;
+        width: 120%;
+        font-size: 3.8vw;
         margin-bottom: 1.5vh;
     }
     .item_6 .boton2{
         width: 20vh;
-        font-size: 1rem;
+        font-size: 3.5vw;
+
     }
 
 
@@ -589,12 +592,17 @@ a:hover{
     }
     .item_7{
         grid-area: cnt3;
-        margin-top: 10vh;
+        display: flex;
+        justify-content: end;
+        margin-bottom: 15vw;
     }
     .item_7 h1{
-        font-size: 2rem;
+        font-size: 5vw;
         font-weight: normal;
         text-align: center;
+    }
+    .item_7 h3{
+        font-size: 4vw;
     }
     .item_8{
         grid-area: cuad;
@@ -604,44 +612,59 @@ a:hover{
         padding-right: 20%;
     }
     .item_8 .cuadroCentro, .cuadro{
-        margin-bottom: 3vh;
+        height: 100%;
+        width: 200%;
+        margin-bottom: 3vw;
     }
 
 
 
     #section_4{
+        display: flex;
+        flex-direction: column;
         margin: 0;
         height: auto;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        grid-template-areas: 
-        ". cnt4 cnt4 cnt4 ."
-        ". item10 item10 item10 ."
-        ". item10 item10 item10 ."
-        ". item10 item10 item10 ."
-        ;
     }
     .item_9{
-        grid-area: cnt4;
         text-align: center;
+        margin-top: 15vw;
     }
     .item_9 h1{
-        font-size: 2rem;
+        font-size: 5vw;
         font-weight: normal;
+        margin-bottom: 4vw;
+        width: 55%;
+    }
+    .item_9 h3{
+        font-size: 5vw;
+        font-weight: normal;
+        margin-top: 5vw;
+        margin-bottom: 5vw;
     }
     .item_10{
         margin: 0;
-        grid-area: item10;
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 15vw;
     }
     .item_10 .img10{
-        height: 25vh;
-        width: 25vh;
+        height: 25vw;
+        width: 25vw;
+        margin-bottom: ;
+    }
+    .item_10 p{
+        font-weight: normal;
+        font-size: 3.8vw;
     }
     .item_10 h3{
         font-weight: normal;
+    
+    }
+    .containerImg4, .containerCentroImg4{
+        height: 100%;
+        width: 50%;
+        margin-bottom: 10vw;
     }
 
 
