@@ -32,7 +32,6 @@
     margin-top: 3vh;
     width: 100%;
     height: 90%;
-
 }
 .item_1 h1{
     font-size: 6vh;
@@ -143,19 +142,22 @@ a:hover{
 }
 .item_5 .imgsection2{
     max-height: 100%;
-    
+    object-fit: contain;
+
 }
 
 
 
 
 .item_6{
+
     margin-top: 4%;
     grid-area: cont2;
     display: flex;
     flex-direction: column;
     justify-content: start;
-    width: 80%;
+    margin-left: 15px;
+    max-width: 80%;
 }
 .item_6 h3{
     color:#ff702a ;
@@ -247,12 +249,14 @@ a:hover{
     align-items: center;
     flex-direction: column;
     cursor: pointer;
+    object-fit: contain;
 }
 
 .item_8 .imgItem7{
     margin-top: 1vh;
     width: 25vh; 
     height: 25vh;
+
 }
 
 .item_8 .cuadro h1, h3, p,
@@ -458,3 +462,145 @@ a:hover{
 .section.active {
     opacity: 1;
 }
+
+
+
+
+@media (width <=850px){
+    #section_1{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(7, 1fr);
+        grid-template-areas: 
+        " logo "
+        " enc "
+        " enc "
+        " enc "
+        " img "
+        " img "
+        " img "
+        ;  
+    }
+    .item_1{
+        grid-area: logo;
+        display: flex;
+        justify-content: start;
+        align-items: end;
+    }
+    .item_1 h1{
+        margin-left: 10px;
+        font-weight: bold;
+    }
+    .item_3{
+        grid-area: enc;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+    .item_3 h1{
+        font-size: 3.5em;
+        font-weight: normal;
+    }
+    .item_3 .boton{
+        margin: 0;
+        margin-top: 2.5vh;
+    }
+    .item_3 h3{
+        font-size: 1.3em;
+    }
+    .item_4 {
+        grid-area: img ;
+    }
+    .item_4 .img img {
+        width: 90%;
+        height: 90%;
+    }
+    .item_1, .item_3, .item_4 {
+        margin: 0;
+    }
+
+
+    #section_2{
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        grid-template-areas: 
+        ". txt2 txt2 txt2 txt2 ."
+        ". txt2 txt2 txt2 txt2 ."
+        ". txt2 txt2 txt2 txt2 ."
+        ". txt2 txt2 txt2 txt2 ."
+        ". img2 img2 img2 img2  ."
+        ". img2 img2 img2 img2  ."
+        ". img2 img2 img2 img2  ."
+        ". . . . . ."
+        ;
+    }
+
+    .item_5{
+        grid-area: img2;
+    }
+    .item_5 {
+        justify-content: center;
+    }
+
+    .item_6{
+        grid-area: txt2;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-left: 6vh;
+    }
+
+    .item_6 h1{
+        font-size: 1.6rem;
+        margin-bottom: 1.5vh;
+    }
+    .item_6 h3{
+        margin-top: 20px;
+        font-size: 1.4rem;
+        margin-bottom: 2vh;
+    }
+    .item_6 p{
+        font-size: 0.8rem;
+        margin-bottom: 1.5vh;
+    }
+    .item_6 .boton2{
+        width: 20vh;
+        font-size: 1rem;
+    }
+
+    
+}
+/* 
+@media (width <= 800px){
+    body{
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(7, 1fr);
+        text-align: center;
+        grid-template-areas: 
+        "titulo titulo titulo"
+        "logo logo logo"
+        "logo logo logo"
+        "logo logo logo"
+        "parrafo parrafo parrafo"
+        ". boton . "
+        "caja_1 caja_2 caja_3"
+        ;
+    }
+    .item_1 h1{
+        font-size: 4rem;
+        text-align: center;
+    }
+    .item_2 img {
+        height: 100%;
+    }
+    .item_3 p {
+        width: 100%;
+    }
+    .item_1, .item_3, .item_4{
+        margin: 0;
+        
+    }
+    .item_5, .item_6, .item_7{
+        top: -20px;
+    }
+} */
