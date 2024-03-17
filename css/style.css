@@ -522,6 +522,8 @@ a:hover{
     }
 
 
+
+
     #section_2{
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(8, 1fr);
@@ -571,6 +573,9 @@ a:hover{
         font-size: 1rem;
     }
 
+
+
+
     #section_3{
         height: auto;
         grid-template-columns: repeat(5, 1fr);
@@ -601,38 +606,41 @@ a:hover{
     .item_8 .cuadroCentro, .cuadro{
         margin-bottom: 3vh;
     }
-}
-/* 
-@media (width <= 800px){
-    body{
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(7, 1fr);
-        text-align: center;
+
+
+
+    #section_4{
+        margin: 0;
+        height: auto;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
         grid-template-areas: 
-        "titulo titulo titulo"
-        "logo logo logo"
-        "logo logo logo"
-        "logo logo logo"
-        "parrafo parrafo parrafo"
-        ". boton . "
-        "caja_1 caja_2 caja_3"
+        ". cnt4 cnt4 cnt4 ."
+        ". item10 item10 item10 ."
+        ". item10 item10 item10 ."
+        ". item10 item10 item10 ."
         ;
     }
-    .item_1 h1{
-        font-size: 4rem;
+    .item_9{
+        grid-area: cnt4;
         text-align: center;
     }
-    .item_2 img {
-        height: 100%;
+    .item_9 h1{
+        font-size: 2rem;
+        font-weight: normal;
     }
-    .item_3 p {
-        width: 100%;
-    }
-    .item_1, .item_3, .item_4{
+    .item_10{
         margin: 0;
-        
+        grid-area: item10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    .item_5, .item_6, .item_7{
-        top: -20px;
+    .item_10 .img10{
+        height: 25vh;
+        width: 25vh;
     }
-} */
+    .item_10 h3{
+        font-weight: normal;
+    }
+}
