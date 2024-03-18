@@ -17,7 +17,7 @@ body{
     grid-template-rows: repeat(4, 1fr);
     background-color:#1e1d2b;
     grid-template-areas: 
-    " logo . menue menue"
+    " head head head head" 
     " enc enc img img"
     " enc enc img img"
     ". . img img"
@@ -25,12 +25,19 @@ body{
 }
 
 
-
+.header{
+    background-color:#1e1d2b;
+    margin-left: 15px;
+    grid-area: head;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 15%;
+}
 .item_1{
     color: #ff702a;
-    grid-area: logo;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     margin-top: 3vh;
     width: 100%;
     height: 90%;
@@ -41,13 +48,14 @@ body{
 }
 
 
-
-
+.menu{
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
 .item_2{
-    grid-area: menue;
     display: flex;
     justify-content: center;
-    margin-top: 6vh;
 }
 .item_2 .menuPP{
     display: none;
@@ -67,6 +75,9 @@ body{
 }
 a:hover{
     color:#ff702a;
+}
+.ul_links{
+    display: flex;
 }
 
 
@@ -164,32 +175,32 @@ a:hover{
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin-left: 15px;
+    margin-left: 5vw;
     max-width: 80%;
 }
 .item_6 h3{
     color:#ff702a ;
     font-weight: normal;
-    font-size: 4.5vh;
+    font-size: 4vw;
 }
 .item_6 h1{
     color: white;
-    font-size: 7vh;
+    font-size: 4vw;
 }
 .item_6 p{
     color: white;
-    font-size: 3.5vh;
+    font-size: 2vw;
 }
 .item_6 .boton2{
     padding: 2%;
-    width: 30%;
+    width: 15vw;
     margin-top: 3%;
     color: white;
     background-color:#ff702a ;
     border: none;
     border-radius: 10px;
     font-weight: bold;
-    font-size:2.5vh;
+    font-size:1.5vw;
     cursor: pointer;
 }
 .boton2:hover{
@@ -525,7 +536,7 @@ a:hover{
         border-radius: 5px;
         background-color: #2c2b47;
         position: absolute;
-        top: 90px ;
+        top: 90% ;
         left: 0;
         height: 0;
         overflow: hidden;
@@ -543,7 +554,7 @@ a:hover{
         color: #ff702a;
     }
     .menuPP:checked + .ul_links {
-        height: 70% ;
+        height: 350% ;
     }
     
     
