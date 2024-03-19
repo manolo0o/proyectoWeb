@@ -29,7 +29,7 @@ body{
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas: 
     "item1 item1 . . . ."
-            "item2 item2 cont cont cont cont"
+    "item2 item2 cont cont cont cont"
     "item2 item2 cont cont cont cont"
     "item2 item2 cont cont cont cont"
     "item3 item3 cont cont cont cont"
@@ -140,7 +140,7 @@ body{
 
 
 .item_5 {
-    width: 90%;
+    width: 88%;
     height: 100%; 
     overflow-y: auto;  
     border: 3.5px solid var(--azul-medio); 
@@ -151,12 +151,23 @@ body{
 
 .item_5  .prendasContainer {
     width: 100%;
+    display: flex;
+    justify-content: start; 
 }
 
-.item_5  .prenda {
+
+.item_5  .prenda1, .prenda2, .prenda3 {
     padding: 5px;
     margin-bottom: 5px;
     background-color: #f0f0f0;
     border: 1px solid var(--azul-medio);
     border-radius: 10px;
+    width: 15vw;
+    height: 15vw;
+    margin-left: 3vw;
+}
+.item_5  .prenda1  img{
+    box-sizing: content-box;
+    width: 10vw;
+    height: 10vw;
 }
