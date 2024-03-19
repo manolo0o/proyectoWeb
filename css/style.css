@@ -788,28 +788,34 @@ a:hover{
 
     #section_6{
         height: auto;
+        margin-top: 15vw;
     }
     .item_12 footer{
         display: flex;
         flex-direction: column;
-        margin: 10vh;
+        margin: 7vw;
     }
     .item_12 h2{
         margin-top: 10vh;
+        font-size: 2rem;
     }
     .item_12 .menulinks h2{
         margin-top: 0;
+    }
+    .item_12 .menuVertical{
+        font-size: 1.2rem;
     }
     .item_12 .menuServices{
         margin: 0;
     }
     .item_12 .contactUs {
-        margin-left: 5vh;
+        margin-left: 19vw;
+
     }
     .item_12 .contactUs h2 {
         font-size: 3.5vh;
     }
     .item_12 .contactUs .bx {
-        font-size: 1.7vh;
+        font-size: 1.1rem;
     }
 }
