@@ -14,10 +14,10 @@ body{
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas: 
     "item1 item1 . . . ."
+    ". . . . . ."
     "item2 item2 . . . ."
     "item2 item2 . . . ."
     "item3 item3 . . . ."
-    ". . . . . ."
     "item4 item4 . . . ."
     ;
 }
@@ -25,9 +25,11 @@ body{
 
 .item_1{
     color: white;
+    font-size: 4vw;
+    font-weight: bold;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     grid-area: item1;
 }
 
@@ -41,32 +43,42 @@ body{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: purple;
-    border-radius: 10px;
+
 }
-.item_2 .ul_links , .menuVertical {
-    list-style: none;
+.menu {
+    width: 30vw;
+    border-radius: 5px;
+}
+
+.ul_links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.li_links {
+}
+
+.menuVertical {
+    margin-bottom: 5px;
+    display: block;
+    padding: 10px;
     text-decoration: none;
-    padding: 1.2vw ;
-    border-radius: 10px;
-}   
-.item_2 .menuVertical .li_links{
-    background-color: purple;
-}
-.item_2 .menuVertical:hover{
-    background-color: white;
-    color: purple;
+    color: white;
+    font-size: 1.5vw;
 }
 
-
-.item_2 .li_links{
-    margin-bottom: 2vw;
-    width: 100%;
+.menuVertical:hover,
+.menuVertical.active {
+    background-color: aquamarine;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.589);
+}
+.menuVertical.active{
+    font-size: 1.5vw;
 }
 
-.item_2 .ul_links{
-    width: 100%;
-}
 
 
 
@@ -74,15 +86,30 @@ body{
 
 
 .item_3{
-    align-items: center;
     grid-area: item3;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-right: 0;
 }
 .item_3 li, a{
     color: white;
     list-style: none;
     text-decoration: none;
+    font-size: 1.5rem;
+}
+.menucarrito{
+    width: 25vw;
+}
+.carrito{
+    text-decoration: none;
+    color: white;
+}
+.carrito:hover{
+    background-color: aquamarine;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.589);
 }
 
 
@@ -92,6 +119,9 @@ body{
     grid-area: item4;
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     color: white;
+}
+.item_4 p{
+    font-weight: bold;
 }
