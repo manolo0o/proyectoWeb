@@ -2,10 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
 
 :root {
-    /* Define shades of black using RGB */
-}
-
-:root {
     /* Blanco */
     --blanco: #FFFFFF;
     /* Azules */
@@ -163,7 +159,7 @@ body{
 
 .item_5 {
     display: flex;
-    width: 95%;
+    width: 98%;
     height: 100%; 
     overflow-y: auto;  
     border: 3.5px solid var(--black-100); 
@@ -173,6 +169,8 @@ body{
     background-color: var(--black-90);
 }
 .item_5  .prendasContainer {
+    margin-top: 1vw;
+    margin-right: 5vw;
     width: 100%;
     display: grid;
     gap: 30px;
@@ -217,10 +215,11 @@ body{
     padding: 0.1vw;
 }
 .item_5 .agregar a:hover{
-    background-color: var(--azul-oscuro);
-    color: var(--blanco);
+    background-color: var(--blanco);
+    color: var(--black-100);
     transition: 0.4s;
     animation: fadeInUp 0.4s forwards;
+    border-radius: 10px;
 }
 .item_5 .content{
     height: 100%;
