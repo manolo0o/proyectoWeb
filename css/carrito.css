@@ -276,6 +276,7 @@ body{
     font-weight: bold;
     background-color: var(--azul-medio);
     color: var(--blanco);
+    cursor: pointer;
 }
 .item_5 .comprar .boton2:hover {
     color: var(--blanco);
@@ -298,6 +299,7 @@ body{
     font-weight: bold;
     background-color: var(--azul-medio);
     color: var(--blanco);
+    cursor: pointer;
 }
 .item_5 .boton1:hover{
     color: var(--blanco);
