@@ -1,15 +1,40 @@
 
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
 
+:root {
+    /* Define shades of black using RGB */
+}
 
 :root {
+    /* Blanco */
+    --blanco: #FFFFFF;
     /* Azules */
     --azul-oscuro: #1A5276;
     --azul-medio: #2980B9;
     --azul-claro: #3498db9d;
-
-    /* Blanco */
-    --blanco: #FFFFFF;
+    --black-10: rgba(0, 0, 0, 0.1); /* Very light black (mostly transparent) */
+    --black-20: rgba(0, 0, 0, 0.2);
+    --black-30: rgba(0, 0, 0, 0.3);
+    --black-40: rgba(0, 0, 0, 0.4);
+    --black-50: rgba(0, 0, 0, 0.5); /* Midway - semi-transparent black */
+    --black-60: rgba(0, 0, 0, 0.6);
+    --black-70: rgba(0, 0, 0, 0.7);
+    --black-80: rgba(0, 0, 0, 0.8);
+    --black-90: rgba(0, 0, 0, 0.9);
+    --black-100: rgba(0, 0, 0, 1.0); /* Pure black */
+    
+    /* Define shades of black using Hexadecimal */
+    --black-hex-10: #1a1a1a; /* Lighter black */
+    --black-hex-20: #333333;
+    --black-hex-30: #4d4d4d;
+    --black-hex-40: #666666;
+    --black-hex-50: #808080; /* Midway - medium gray, which looks like a very dark shade when used as a "black" */
+    --black-hex-60: #999999;
+    --black-hex-70: #b3b3b3;
+    --black-hex-80: #cccccc;
+    --black-hex-90: #e6e6e6;
+    --black-hex-100: #ffffff; /* Technically, this is white, illustrating the gradient to "black" */
+    
 
 }
 
@@ -40,7 +65,7 @@ body{
 
 
 .item_1{
-    color:var(--azul-oscuro);
+    color:var(--black-90);
     font-size: 3.5vw;
     font-weight: bold;
     display: flex;
@@ -78,18 +103,18 @@ body{
     display: block;
     padding: 10px;
     text-decoration: none;
-    color: var(--azul-oscuro);
+    color: var(--black-90);
     font-size: 1.5vw;
 }
 
 .menuVertical:hover,
 .menuVertical.active {
     color: var(--blanco);
-    background-color: var(--azul-claro);
+    background-color: var(--black-90);
     font-weight: bold;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    border: 1px solid var(--azul-medio);
+    border: 1px solid var(--black-100);
     transition: 0.4s;
     animation: fadeInUp 0.4s forwards;
 }
@@ -114,14 +139,6 @@ body{
     text-decoration: none;
     font-size: 1.5vw;
 }
-.item_3 .menuVertical
-    
-.carrito:hover{
-    background-color: var(--azul-claro);
-    font-weight: bold;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.589);
-}
 .item_3 .bx{    
     margin-left: 2vw;
     font-size: 1.4vw;
@@ -135,7 +152,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--azul-oscuro);
+    color: var(--black-90);
 }
 .item_4 p{
     font-weight: bold;
@@ -146,14 +163,14 @@ body{
 
 .item_5 {
     display: flex;
-    width: 90%;
+    width: 95%;
     height: 100%; 
     overflow-y: auto;  
-    border: 3.5px solid var(--azul-medio); 
+    border: 3.5px solid var(--black-100); 
     padding: 10px; 
     grid-area: cont;
     border-radius: 15px;
-    background-color: #1a5376bb;
+    background-color: var(--black-90);
 }
 .item_5  .prendasContainer {
     width: 100%;
@@ -163,20 +180,27 @@ body{
 }
 .item_5  .prendas{
     display: flex;  
-    align-items: end;     
+    flex-direction: column;
+    align-items: center;    
     padding: 5px;
-    background-color: #f0f0f0;
-    border: 2px solid var(--azul-medio);
+    background-color: #e2dede;
     border-radius: 10px;
     width: 15vw;
     height: 15vw;
     margin-left: 3vw;
 }
+.item_5 .img{
+    display: flex;
+    height: 80%;
+}
+.item_5 img{
+    width: 13.5vw ;
+    height: 12vw;
+}
 .item_5 .barra{
     display: flex;
     padding: 3px;
-    background-color:#1a5376bb;
-    border: 2px solid var(--azul-medio);
+    background-color: var(--black-90);
     border-radius: 10px;
     width: 100%;
     height: 30%;
@@ -186,15 +210,11 @@ body{
     align-items: flex-end;
     justify-content: end;
     width: 80%;
-
 }
 .item_5 .agregar a{
-    color: var(--azul-oscuro);
+    color: var(--blanco);
     font-size: 1vw;
-    background-color: var(--azul-claro);
-    border-radius: 5px;
     padding: 0.1vw;
-    border: 2px solid var(--azul-medio);
 }
 .item_5 .agregar a:hover{
     background-color: var(--azul-oscuro);
