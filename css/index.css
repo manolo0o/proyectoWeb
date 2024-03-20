@@ -217,6 +217,9 @@ body{
 .item_5 img{
     width: 13.5vw ;
     height: 12vw;
+    border: 2.5px solid var(--black-90);
+    border-radius:10px; 
+    border-bottom: none;
 }
 .item_5 .barra{
     display: flex;
@@ -242,8 +245,8 @@ body{
     background-color: var(--blanco);
     color: var(--black-100);
     transition: 0.4s;
-    animation: fadeInUp 0.4s forwards;
-    border-radius: 10px;
+    transition: ease-in 0.3s;
+    border-radius: 100px;
 }
 .item_5 .content{
     margin-left: 1vw;

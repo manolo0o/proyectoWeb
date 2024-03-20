@@ -187,79 +187,126 @@ body{
     background-color: var(--black-90);
 }
 .item_5  .prendasContainer {
+    
     margin-top: 1vw;
-    margin-right: 5vw;
-    width: 100%;
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 .item_5  .prendas{
-    display: flex;  
-    flex-direction: column;
-    align-items: center;    
-    padding: 5px;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 0.2vw;
     background-color: #f3f2f2;
     border-radius: 10px;
-    width: 15vw;
-    height: 15vw;
+    width: 105%;
+    height: 25%;
     margin-left: 3vw;
 }
+.item_5 .infContainer{
+    margin-right: 7px;
+    width: 87%;
+    height: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2.5px solid var(--black-90);
+    border-radius: 10px;
+}
 .item_5 .prendas:hover  {
-    transform: scale(1.10);
+    transform: scale(1.02);
     transition: transform 0.3s ease-in-out;
 }
 .item_5 .img{
-    display: flex;
-    height: 80%;
+    height: 95%;
 }
 .item_5 img{
-    width: 13.5vw ;
-    height: 12vw;
-}
-.item_5 .barra{
-    display: flex;
-    padding: 3px;
-    background-color: var(--black-90);
     border-radius: 10px;
-    width: 100%;
-    height: 30%;
-}
-.item_5 .agregar{
-    display: flex;
-    align-items: flex-end;
-    justify-content: end;
-    width: 80%;
-}
-.item_5 .agregar a{
-    color: var(--blanco);
-    font-size: 1.3vw;
-    padding: 0.3vw;
-    margin-right: 5px;
-}
-.item_5 .agregar a:hover{
-    background-color: var(--blanco);
-    color: var(--black-100);
-    transition: 0.4s;
-    animation: fadeInUp 0.4s forwards;
-    border-radius: 10px;
-}
-.item_5 .content{
-    margin-left: 1vw;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    border: 2.5px solid var(--black-90);
+}
+.item_5 input{
+    width: 65%;
+    height: 11%;
+    border-radius: 3.5px;
+    border: 2.5px solid var(--black-90);
+}
+.item_5 .bx{
+    color: black;
+    font-size: 3vw;  
+    padding: 0.5vw;
+}
+.item_5 .bx:hover{
+    color: var(--blanco);
+    background-color: var(--black-90);
+    border-radius:90px;
+    transition: ease-in 0.3s;
 }
 .item_5 h3{
-    color: var(--blanco);
-    font-size: 0.9vw;
+    margin-bottom: 0.5vw;    
 }
-.item_5 p{
+.item_5 .containerBotones{
+    margin-left: 4.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+
+}
+.item_5 .comprar h3{
     color: var(--blanco);
-    font-size: 0.9vw;
+}
+.item_5 .comprar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--black-hex-20);
+    height: 4.5vw;
+    width: 20vw;
+    border-radius: 10px;
+}
+.item_5 .comprar .boton2 {
+    width: 50%;
+    height: 45%;
+    border-radius: 10px;
+    border: 2.5px solid var(--azul-oscuro);
+    font-weight: bold;
+    background-color: var(--azul-medio);
+    color: var(--blanco);
+}
+.item_5 .comprar .boton2:hover {
+    color: var(--blanco);
+    font-weight: bold;
+    border-radius: 10px;
+    transition: ease-in 0.3s;
+    border: 2.5px solid var(--azul-oscuro);
+    background-color: var(--azul-oscuro);
 }
 
+.item_5 .vaciarCarrito{
+    width: 10vw;
+    height: 2.2vw;
+}
+.item_5  .boton1 {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 2.5px solid var(--azul-oscuro);
+    font-weight: bold;
+    background-color: var(--azul-medio);
+    color: var(--blanco);
+}
+.item_5 .boton1:hover{
+    color: var(--blanco);
+    font-weight: bold;
+    border-radius: 10px;
+    transition: ease-in 0.3s;
+    border: 2.5px solid var(--azul-oscuro);
+    background-color: var(--azul-oscuro);
+}
 
 
 ::-webkit-scrollbar {
