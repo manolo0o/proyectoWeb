@@ -160,16 +160,22 @@ body{
 
 
 
+
 .item_4{
     grid-area: item4;
     display: flex;
     justify-content: center;
-    align-items: center;
+    text-align: center;
     color: var(--black-90);
 }
 .item_4 p{
     font-weight: bold;
     font-size: 1.7vw;
+}
+.item_4 .bx{
+    margin-top: 1vw;
+    color: var(--black-90);
+    font-size: 2.2vw;
 }
 
 
