@@ -67,8 +67,8 @@ class Myelement extends LitElement  {
     }
     
     .logo {
-        font-weight: 400;
-        font-size: 1.3rem;
+        font-weight: 800;
+        font-size: 2rem;
         text-align:center;
     }
     .button__Category{
@@ -83,6 +83,15 @@ class Myelement extends LitElement  {
         width:100%;
         text-align:center;
     }
+    .button__Category:hover{
+        background-color:var(--clr-white);
+        color:var(--clr-main);
+        width:100%;
+        border-top-left-radius:1rem;
+        border-bottom-left-radius:1rem;
+        position:relative;
+    }
+
     .button__Category.active{
         background-color:var(--clr-white);
         color:var(--clr-main);
@@ -123,11 +132,54 @@ class Myelement extends LitElement  {
         cursor: pointer;
         gap: 1rem;
         font-weight: 600;
-        padding: .7rem;
+        padding: 1rem;
         display: block; 
-        width: 100%;
+
+    }
+    .cart__Button.active {
+        background-color: var(--clr-white);
+        color: var(--clr-main);
+        width: 90%;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        position: relative;
+    }
+    .cart__Button.active::before{
+        content:'';
+        position:absolute;
+        width:1rem;
+        height:2rem;
+        bottom:100%;    
+        right:0;
+        background-color:transparent;
+        border-bottom-right-radius:.7rem;
+        box-shadow:0 1rem 0 var(--clr-white);
+    }
+    .cart__Button.active::after{
+        content:'';
+        position:absolute;
+        width:1rem;
+        height:2rem;
+        top:100%;
+        right:0;
+        background-color:transparent;
+        border-top-right-radius:.7rem;
+        box-shadow:0 -1rem 0 var(--clr-white);
+    }
+    .cart__Button.active .number{
+        background-color:var(--clr-main);
+        color:var(--clr-white);
     }
     
+
+    .cart__Button:hover {
+        background-color:var(--clr-white);
+        color:var(--clr-main);
+        border-top-left-radius:1rem;
+        border-bottom-left-radius:1rem;
+        position:relative;
+    }
+
     .number{
         background-color:var(--clr-white);
         color:var(--clr-main);
@@ -135,19 +187,6 @@ class Myelement extends LitElement  {
         border-radius:.25rem;
     }
 
-    .cart__Button.active .number{
-        background-color:var(--clr-main);
-        color:var(--clr-white);
-    }
-
-    .cart__Button.active {
-        background-color: var(--clr-white);
-        color: var(--clr-main);
-        width: 100%;
-        border-top-left-radius: 1rem;
-        border-bottom-left-radius: 1rem;
-        position: relative;
-    }
 
 
     .menue{
@@ -156,11 +195,12 @@ class Myelement extends LitElement  {
         flex-direction:column;
         gap:1rem;
     }
+
     
-    .footer__text {
-        color: var(--clr-main-light);
+    .footer__text{
         font-size: .85rem;
         text-align:center;
+        color:var(--clr-main-light);
     }
     
     main {
@@ -187,6 +227,10 @@ class Myelement extends LitElement  {
         padding: 1rem;
         border-radius: 1rem;
         text-align: center;
+    }
+    .products:hover{
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
     }
     
     .product__Image {
@@ -222,7 +266,8 @@ class Myelement extends LitElement  {
     }
     
     .add__product:hover {
-        background-color: var(--clr-main-dark);
+        background-color: var(--clr-white);
+        color:var(--clr-main);
     }
 
     /*_______________________________________________________________________________________________________________________________________*/  
@@ -310,6 +355,8 @@ class Myelement extends LitElement  {
         border-top-right-radius:1rem;
         border-bottom-right-radius:1rem;
     }
+
+
     `;
 
 //_______________________________________________________________________________________________________________________________________   
