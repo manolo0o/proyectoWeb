@@ -124,10 +124,22 @@ class Myelement extends LitElement  {
         gap: 1rem;
         font-weight: 600;
         padding: .7rem;
-        display: block; /* Asegurarse de que el botón tome todo el ancho disponible */
+        display: block; 
         width: 100%;
     }
     
+    .number{
+        background-color:var(--clr-white);
+        color:var(--clr-main);
+        padding:0 .25rem;
+        border-radius:.25rem;
+    }
+
+    .cart__Button.active .number{
+        background-color:var(--clr-main);
+        color:var(--clr-white);
+    }
+
     .cart__Button.active {
         background-color: var(--clr-white);
         color: var(--clr-main);
@@ -136,26 +148,7 @@ class Myelement extends LitElement  {
         border-bottom-left-radius: 1rem;
         position: relative;
     }
-    .cart__Container{
-        display:flex;
-        flex-direction:column;
-    }
-    .container__ProductCart{
-        width: 100%;
-        height: 20%;
-        border: 1px solid black;
-        border-radius: 1rem;
-        display: flex;
-        justify-content: space-around;
-    }
 
-    .cart__Image{
-        width:10%;
-        border-radius:1rem;
-        border: 1px solid black ;
-    }
-    
-    
 
     .menue{
         list-style:none;
@@ -231,6 +224,92 @@ class Myelement extends LitElement  {
     .add__product:hover {
         background-color: var(--clr-main-dark);
     }
+
+    /*_______________________________________________________________________________________________________________________________________*/  
+    /*CART CSS*/    
+    
+    
+    .container__ProductCart{
+        display:flex;
+        flex-direction:column;
+        gap:1rem;
+    }
+    
+    .product__Cart{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        background-color:black;
+        color:white;
+        padding:.5rem;
+        padding-right:1.5rem;
+        border-radius:1rem;
+    }
+    
+    .cart__Image{
+        width:4rem;
+        border-radius:1rem;
+    }
+    
+    .product__Cart small{
+        font-size: .75rem;
+    }
+    
+    .cart__Delete{
+        border:0;
+        background-color:transparent;
+        cursor:pointer;
+    }
+    
+    .cart__Container{
+        display:flex;
+        flex-direction:column;
+        gap:1.5rem;
+    }
+    
+    .cart__Actions{
+        display:flex;
+        justify-content:space-between;
+        margin-top:1rem;
+    }
+    
+    .cart__Actions_Delete{
+        border:0;
+        background-color:gray;
+        padding:1rem;
+        border-radius:1rem;
+        color:var(--clr-white);
+        text-transform:upperCase;
+        cursor:pointer;
+    }
+
+    .cart__Actions_Right{
+        display:flex;
+        
+    }
+
+    .cart__Actions_Total{
+        display:flex;
+        background-color:gray;
+        border-top-left-radius:1rem;
+        border-bottom-left-radius:1rem;
+        color:var(--clr-white);
+        text-transform:upperCase;
+        padding:0.2rem;
+        gap:1rem;
+    }
+
+    .cart__Actions_Buy{
+        border:0;
+        background-color:black;
+        padding:1rem;
+
+        color:var(--clr-white);
+        text-transform:upperCase;
+        cursor:pointer;
+        border-top-right-radius:1rem;
+        border-bottom-right-radius:1rem;
+    }
     `;
 
 //_______________________________________________________________________________________________________________________________________   
@@ -250,8 +329,8 @@ class Myelement extends LitElement  {
                             <li><button class="button__Category ${this.activeCategory === 'pantalones' ? 'active' : ''}" @click=${() => this.changeCategory('pantalones')}>Pants</button></li>
                             <li style="width: 100%;">
                                 <a class="cart__Button ${this.view === 'cart' ? 'active' : ''}" @click=${this.viewCart}>
-                                    
-                                    Cart <span class="number">${this.cartItems.length}</span>
+                                    Cart
+                                    <span class="number">${this.cartItems.length}</span>
                                 </a>
                             </li>
                         </ul>
@@ -266,18 +345,21 @@ class Myelement extends LitElement  {
             </div>
         `;
     }
+//_______________________________________________________________________________________________________________________________________   
 
     viewCart() {
         this.activeCategory = null;
         this.view = 'cart';
         this.requestUpdate();
     }
+//_______________________________________________________________________________________________________________________________________   
 
     changeCategory(category) {
         this.activeCategory = category;
         this.view = 'products';
         this.requestUpdate();
     }
+//_______________________________________________________________________________________________________________________________________   
 
     renderProducts() {
         const filteredProducts = this.products.filter(product => this.activeCategory === 'all' || product.category === this.activeCategory);
@@ -297,25 +379,67 @@ class Myelement extends LitElement  {
             </div>
         `;
     }
+//_______________________________________________________________________________________________________________________________________   
 
-    renderCart() {
-        return html`
-            <h2 class="principal__Title">Carrito de Compras</h2>
-                ${this.cartItems.length > 0 ? html`
-                <div class="cart__Container"> 
-                    <div class="container__ProductCart"> 
-                            ${this.cartItems.map(item => html`
-                                <img class="cart__Image" src="${item.image}" alt="">
-                                <p>Product <br> ${item.title}</p>
-                                <p>Amount <br> ${item.price}</p>
-                                <p>Price <br> ${item.price}</p>
-                                <p>Delete</p>
-                            `)}
+renderCart() {
+    const total = this.cartItems.reduce((acc, item) => acc + item.price, 0);
+
+    return html`
+        <h2 class="principal__Title">Carrito de Compras</h2>
+        ${this.cartItems.length > 0 ? html`
+            <div class="cart__Container"> 
+                ${this.cartItems.map(item => html`
+                <div class="product__Cart"> 
+                    <img class="cart__Image" src="${item.image}" alt="">
+                    <div class="content__Product">
+                        <small>Product</small>    
+                        <h3>${item.title}</h3>
                     </div>
+                    <div class="cart__Amount">
+                        <small>Amount</small>
+                        <p>1</p>
+                    </div>
+                    <div class="cart__Price">
+                        <small>Price</small>
+                        <p>${item.price}</p>
+                    </div>
+                    <div class="cart__Subtotal">
+                        <small>Subtotal</small>
+                        <p>${item.price}</p>
+                    </div>
+                    <button class="cart__Delete" @click=${() => this.removeFromCart(item.id)}>
+                        <img src="./public/icon.svg" alt="">
+                    </button>
                 </div>
-            ` : html`<p>Tu carrito está vacío :( </p>`}
-        `;
-    }
+                `)}
+            </div>
+            <div class="cart__Actions">
+                <div class="cart__Actions_Left">
+                    <button class="cart__Actions_Delete" @click=${this.emptyCart}>Vaciar Carrito</button>
+                </div>
+                <div class="cart__Actions_Right">
+                    <div class="cart__Actions_Total">
+                        <p>Total:</p>
+                        <p>$${total}</p>
+                    </div>
+                    <button class="cart__Actions_Buy">Buy now!</button>
+                </div>
+            </div>
+        ` : html`<p>Tu carrito está vacío :( </p>`}
+    `;
+}
+
+removeFromCart(productId) {
+    this.cartItems = this.cartItems.filter(item => item.id !== productId);
+    this.requestUpdate();
+}
+
+emptyCart() {
+    this.cartItems = [];
+    this.requestUpdate();
+}
+
+//_______________________________________________________________________________________________________________________________________   
 
     addToCart(product) {
         this.cartItems = [...this.cartItems, product];
@@ -323,7 +447,5 @@ class Myelement extends LitElement  {
     }
 
 }
-
+//_______________________________________________________________________________________________________________________________________   
 customElements.define('my-element', Myelement);
-
-/* <box-icon type='solid' name='cart'></box-icon> */
