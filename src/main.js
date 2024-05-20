@@ -1,12 +1,52 @@
 // IMPORTING LIT ELEMENTS
 import { LitElement, css, html } from 'lit'
 class Myelement extends LitElement  {
-    constructor(){
-        super();
-        this.view = 'products'; 
-        this.cartItems = [];
-        this.activeCategory = 'all';
+    static get properties() {
+        return {
+            activeCategory: { type: String },
+            view: { type: String },
+            cartItems: { type: Array },
+            products: { type: Array }
+        };
     }
+//_______________________________________________________________________________________________________________________________________   
+// Function to add all the methods that we gonna use.
+    constructor() {
+        super();
+        this.activeCategory = 'all';
+        this.view = 'products';
+        this.cartItems = [];
+        this.products = [];
+        this.loadProducts();
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        this.loadProducts();
+    }
+
+//_______________________________________________________________________________________________________________________________________   
+// Function to search or consume all the producs or files that we gonna use.
+    
+    async loadProducts() {
+        try {
+            const response = await fetch('./src/products.json'); // this fetch is for search the products in the json.
+            const data = await response.json();
+            this.products = data.map(item => ({
+                // In this part am maping the item for a correct assigment on the function render()
+                id: item.id,
+                title: item.titulo,
+                image: item.imagen,
+                category: item.categoria.id,
+                price: item.precio
+            }));
+            this.requestUpdate();
+        } catch (error) {
+            console.error('Error loading products:', error);
+        }
+    }
+//_______________________________________________________________________________________________________________________________________   
+//Styling CSS (Visual Section)
+    
     static styles =css`
     .wrapper {
         display: grid;
@@ -15,7 +55,7 @@ class Myelement extends LitElement  {
     }
     
     aside {
-        padding: 2rem;
+        padding: 1rem;
         padding-right:0;
         color: var(--clr-white);
         position: sticky;
@@ -23,14 +63,15 @@ class Myelement extends LitElement  {
         height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
     
     .logo {
         font-weight: 400;
         font-size: 1.3rem;
+        text-align:center;
     }
-    .button__Category, .cart__Button {
+    .button__Category{
         background-color:transparent;
         border:0;
         color:var(--clr-white);
@@ -39,11 +80,12 @@ class Myelement extends LitElement  {
         gap:1rem;
         font-weight:600;
         padding:1rem;
+        width:100%;
+        text-align:center;
     }
-
     .button__Category.active{
         background-color:var(--clr-white);
-        color:var(--clr-main    );
+        color:var(--clr-main);
         width:100%;
         border-top-left-radius:1rem;
         border-bottom-left-radius:1rem;
@@ -54,7 +96,7 @@ class Myelement extends LitElement  {
         position:absolute;
         width:1rem;
         height:2rem;
-        bottom:100%;
+        bottom:100%;    
         right:0;
         background-color:transparent;
         border-bottom-right-radius:.7rem;
@@ -72,20 +114,60 @@ class Myelement extends LitElement  {
         box-shadow:0 -1rem 0 var(--clr-white);
     }
 
-    .cart__Button{
-        margin-top:3rem;
+    .cart__Button {
+        text-align:center;
+        background-color: transparent;
+        border: 0;
+        color: var(--clr-white);
+        font-size: 1rem;
+        cursor: pointer;
+        gap: 1rem;
+        font-weight: 600;
+        padding: .7rem;
+        display: block; /* Asegurarse de que el botón tome todo el ancho disponible */
+        width: 100%;
     }
+    
+    .cart__Button.active {
+        background-color: var(--clr-white);
+        color: var(--clr-main);
+        width: 100%;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        position: relative;
+    }
+    .cart__Container{
+        display:flex;
+        flex-direction:column;
+    }
+    .container__ProductCart{
+        width: 100%;
+        height: 20%;
+        border: 1px solid black;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .cart__Image{
+        width:10%;
+        border-radius:1rem;
+        border: 1px solid black ;
+    }
+    
+    
 
     .menue{
         list-style:none;
         display:flex;
         flex-direction:column;
-        gap:2rem;
+        gap:1rem;
     }
     
     .footer__text {
         color: var(--clr-main-light);
         font-size: .85rem;
+        text-align:center;
     }
     
     main {
@@ -108,7 +190,7 @@ class Myelement extends LitElement  {
     }
     
     .products {
-        background-color: grey;
+        background-color: black ;
         padding: 1rem;
         border-radius: 1rem;
         text-align: center;
@@ -124,30 +206,35 @@ class Myelement extends LitElement  {
     }
     
     .product__Title {
+        color:var(--clr-white);
         font-size: 1.1rem;
         margin-bottom: .5rem;
     }
     
     .product__Price {
-        color: var(--clr-main);
+        color: var(--clr-white);
         font-weight: bold;
         margin-bottom: 1rem;
     }
     
     .add__product {
-        background-color: var(--clr-main);
+        background-color: transparent;
         color: var(--clr-white);
-        border: none;
+        font-weight:600;
         padding: .5rem 1rem;
-        border-radius: .5rem;
+        border-radius: .8rem;
         cursor: pointer;
         transition: background-color .3s;
+        border: 1.5px solid var(--clr-white);
     }
     
     .add__product:hover {
         background-color: var(--clr-main-dark);
     }
     `;
+
+//_______________________________________________________________________________________________________________________________________   
+// Principal Html
     render() {
         return html`
             <div class="wrapper">
@@ -158,10 +245,15 @@ class Myelement extends LitElement  {
                     <nav>
                         <ul class="menue">
                             <li><button class="button__Category ${this.activeCategory === 'all' ? 'active' : ''}" @click=${() => this.changeCategory('all')}>All Products</button></li>
-                            <li><button class="button__Category ${this.activeCategory === 'coats' ? 'active' : ''}" @click=${() => this.changeCategory('coats')}>Coats</button></li>
-                            <li><button class="button__Category ${this.activeCategory === 'shirts' ? 'active' : ''}" @click=${() => this.changeCategory('shirts')}>Shirts</button></li>
-                            <li><button class="button__Category ${this.activeCategory === 'pants' ? 'active' : ''}" @click=${() => this.changeCategory('pants')}>Pants</button></li>
-                            <li><a class="cart__Button" @click=${() => this.view = 'cart'}><box-icon type='solid' name='cart'></box-icon>Cart <span class="number">${this.cartItems.length}</span></a></li>
+                            <li><button class="button__Category ${this.activeCategory === 'abrigos' ? 'active' : ''}" @click=${() => this.changeCategory('abrigos')}>Coats</button></li>
+                            <li><button class="button__Category ${this.activeCategory === 'camisas' ? 'active' : ''}" @click=${() => this.changeCategory('camisas')}>Shirts</button></li>
+                            <li><button class="button__Category ${this.activeCategory === 'pantalones' ? 'active' : ''}" @click=${() => this.changeCategory('pantalones')}>Pants</button></li>
+                            <li style="width: 100%;">
+                                <a class="cart__Button ${this.view === 'cart' ? 'active' : ''}" @click=${this.viewCart}>
+                                    
+                                    Cart <span class="number">${this.cartItems.length}</span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                     <footer>
@@ -173,6 +265,12 @@ class Myelement extends LitElement  {
                 </main>
             </div>
         `;
+    }
+
+    viewCart() {
+        this.activeCategory = null;
+        this.view = 'cart';
+        this.requestUpdate();
     }
 
     changeCategory(category) {
@@ -203,13 +301,19 @@ class Myelement extends LitElement  {
     renderCart() {
         return html`
             <h2 class="principal__Title">Carrito de Compras</h2>
-            ${this.cartItems.length > 0 ? html`
-                <ul>
-                    ${this.cartItems.map(item => html`
-                        <li>${item.title} - $${item.price}</li>
-                    `)}
-                </ul>
-            ` : html`<p>El carrito está vacío</p>`}
+                ${this.cartItems.length > 0 ? html`
+                <div class="cart__Container"> 
+                    <div class="container__ProductCart"> 
+                            ${this.cartItems.map(item => html`
+                                <img class="cart__Image" src="${item.image}" alt="">
+                                <p>Product <br> ${item.title}</p>
+                                <p>Amount <br> ${item.price}</p>
+                                <p>Price <br> ${item.price}</p>
+                                <p>Delete</p>
+                            `)}
+                    </div>
+                </div>
+            ` : html`<p>Tu carrito está vacío :( </p>`}
         `;
     }
 
@@ -218,28 +322,8 @@ class Myelement extends LitElement  {
         this.requestUpdate();
     }
 
-    get products() {
-        return [
-            // ABRIGOS
-            { title: 'Abrigo 1', price: 1000, image: './public/abrigo1.webp', category: 'coats' },
-            { title: 'Abrigo 2', price: 900, image: './public/abrigo2.webp', category: 'coats' },
-            { title: 'Abrigo 3', price: 1000, image: './public/abrigo3.webp', category: 'coats' },
-            { title: 'Abrigo 4', price: 1000, image: './public/abrigo4.webp', category: 'coats' },
-            { title: 'Abrigo 5', price: 1000, image: './public/abrigo5.webp', category: 'coats' },
-            // CAMISAS
-            { title: 'Camisa 1', price: 1000, image: './public/camisa1.webp', category: 'shirts' },
-            { title: 'Camisa 2', price: 1000, image: './public/camisa2.webp', category: 'shirts' },
-            { title: 'Camisa 3', price: 1000, image: './public/camisa3.webp', category: 'shirts' },
-            { title: 'Camisa 4', price: 1000, image: './public/camisa4.webp', category: 'shirts' },
-            { title: 'Camisa 5', price: 1000, image: './public/camisa5.webp', category: 'shirts' },
-            // PANTALONES
-            { title: 'Pantalon 1', price: 1000, image: './public/pantalon1.webp', category: 'pants' },
-            { title: 'Pantalon 2', price: 1000, image: './public/pantalon2.webp', category: 'pants' },
-            { title: 'Pantalon 3', price: 1000, image: './public/pantalon3.webp', category: 'pants' },
-            { title: 'Pantalon 4', price: 1000, image: './public/pantalon4.webp', category: 'pants' },
-            { title: 'Pantalon 5', price: 1000, image: './public/pantalon5.webp', category: 'pants' }
-        ];
-    }
 }
 
 customElements.define('my-element', Myelement);
+
+/* <box-icon type='solid' name='cart'></box-icon> */
