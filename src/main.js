@@ -259,10 +259,10 @@ class Myelement extends LitElement  {
         color: var(--clr-white);
         font-weight:600;
         padding: .5rem 1rem;
-        border-radius: .8rem;
+        border-radius: .7rem;
         cursor: pointer;
         transition: background-color .3s;
-        border: 1.5px solid var(--clr-white);
+        border: 2px solid var(--clr-white);
     }
     
     .add__product:hover {
@@ -292,8 +292,8 @@ class Myelement extends LitElement  {
     }
     
     .cart__Image{
-        width:4rem;
-        border-radius:1rem;
+        width: 7rem;
+        border-radius: 1rem;
     }
     
     .product__Cart small{
@@ -321,23 +321,29 @@ class Myelement extends LitElement  {
     .cart__Actions_Delete{
         border:0;
         background-color:gray;
-        padding:1rem;
+        padding:0.7rem;
         border-radius:1rem;
         color:var(--clr-white);
         text-transform:upperCase;
         cursor:pointer;
     }
+    
+    .cart__Actions_Delete:hover{
+        background-color:var(--crl-white);
+        color:gray;
+        border:2px solid gray;
+        
+    }
 
     .cart__Actions_Right{
         display:flex;
-        
     }
 
     .cart__Actions_Total{
         display:flex;
         background-color:gray;
-        border-top-left-radius:1rem;
-        border-bottom-left-radius:1rem;
+        border-top-left-radius:0.7rem;
+        border-bottom-left-radius:0.7rem;
         color:var(--clr-white);
         text-transform:upperCase;
         padding:0.2rem;
@@ -348,14 +354,17 @@ class Myelement extends LitElement  {
         border:0;
         background-color:black;
         padding:1rem;
-
         color:var(--clr-white);
         text-transform:upperCase;
         cursor:pointer;
-        border-top-right-radius:1rem;
-        border-bottom-right-radius:1rem;
+        border-top-right-radius:0.7rem;
+        border-bottom-right-radius:0.7rem;
+        
     }
-
+    .cart__Actions_Buy:hover{
+        background-color:gray;
+        
+    }
 
     `;
 
