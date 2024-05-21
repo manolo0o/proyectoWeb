@@ -1,32 +1,35 @@
-// IMPORTING LIT ELEMENTS
+// IMPORTING LIT ELEMENTS THAT WE ARE GONNA USE ON THE PROJECT
 import { LitElement, css, html } from 'lit'
+
+//_______________________________________________________________________________________________________________________________________
+// Propperties
 class Myelement extends LitElement  {
-    static get properties() {
+    static get properties() { // Define the reactivity of the components
         return {
-            activeCategory: { type: String },
-            view: { type: String },
-            cartItems: { type: Array },
-            products: { type: Array }
+            activeCategory: { type: String }, //This proppertie load the categories, when we change his value, they start to render the product from the category that was selected.
+            view: { type: String }, // This one is for change the views when u click on the menu.
+            cartItems: { type: Array }, // This is an arrray that contain the elements we choose in the store and then reflects them on the cart.
+            products: { type: Array } // This one its an array too, the difference is that this one contain all the products that we hace from a json or font of data.
         };
     }
-//_______________________________________________________________________________________________________________________________________   
+
+//_______________________________________________________________________________________________________________________________________
 // Function to add all the methods that we gonna use.
-    constructor() {
-        super();
-        this.activeCategory = 'all';
-        this.view = 'products';
-        this.cartItems = [];
-        this.products = [];
-        this.loadProducts();
+    constructor() { // this starts the instances from the componentn LitElmnt
+        super(); // Calls the constructor from the initial class, its necessary for security of the executions.
+        this.activeCategory = 'all'; // This define that the start category that the client its gonna see at first is all the products.
+        this.view = 'products'; // This the define the view like products.
+        this.cartItems = []; // Starts as an empty array, and then, load the products that wheee choose on the cart view
+        this.products = []; // Its like the one above, just with all the products that we have in the json files.
+        this.loadProducts(); // Call the method loadProducts for load all the items from the json file an then, reflect it on the proppertie 'products'
     }
-    connectedCallback() {
-        super.connectedCallback();
+    connectedCallback() { // we call this method when we need to conect the DOM (Document Object Model).
+        super.connectedCallback(); 
         this.loadProducts();
     }
 
 //_______________________________________________________________________________________________________________________________________   
 // Function to search or consume all the producs or files that we gonna use.
-    
     async loadProducts() {
         try {
             const response = await fetch('./src/products.json'); // this fetch is for search the products in the json.
@@ -44,9 +47,9 @@ class Myelement extends LitElement  {
             console.error('Error loading products:', error);
         }
     }
+
 //_______________________________________________________________________________________________________________________________________   
-//Styling CSS (Visual Section)
-    
+//Styling CSS (Visual Section)//
     static styles =css`
     .wrapper {
         display: grid;
@@ -377,7 +380,7 @@ class Myelement extends LitElement  {
     `;
 
 //_______________________________________________________________________________________________________________________________________   
-// Principal Html
+// Principal Html //
     render() {
         return html`
             <div class="wrapper">
@@ -409,22 +412,25 @@ class Myelement extends LitElement  {
             </div>
         `;
     }
-//_______________________________________________________________________________________________________________________________________   
 
+//_______________________________________________________________________________________________________________________________________   
+// Change the view show the cart view //
     viewCart() {
         this.activeCategory = null;
         this.view = 'cart';
         this.requestUpdate();
     }
-//_______________________________________________________________________________________________________________________________________   
 
+//_______________________________________________________________________________________________________________________________________   
+// Change the cathegory and shows to the user the view of te products//
     changeCategory(category) {
         this.activeCategory = category;
         this.view = 'products';
         this.requestUpdate();
     }
-//_______________________________________________________________________________________________________________________________________   
 
+//_______________________________________________________________________________________________________________________________________   
+//Method to load all the products & respective HTML //
     renderProducts() {
         const filteredProducts = this.products.filter(product => this.activeCategory === 'all' || product.category === this.activeCategory);
         return html`
@@ -443,8 +449,9 @@ class Myelement extends LitElement  {
             </div>
         `;
     }
-//_______________________________________________________________________________________________________________________________________   
 
+//_______________________________________________________________________________________________________________________________________   
+// Method to load the selected products on the Cart & respective HTML //
 renderCart() {
     const total = this.cartItems.reduce((acc, item) => acc + item.subtotal, 0);
 
@@ -492,8 +499,9 @@ renderCart() {
         ` : html`<div class="kitty"><p>Tu carrito está vacío. . .</p><img class="Cat"src="./public/Cat.svg" alt=""></div>`}
     `;
 }
-//_______________________________________________________________________________________________________________________________________   
 
+//_______________________________________________________________________________________________________________________________________   
+// Function to remove an item from the cart //
 removeFromCart(productId) {
     const itemIndex = this.cartItems.findIndex(item => item.id === productId);
     if (itemIndex > -1) {
@@ -506,29 +514,16 @@ removeFromCart(productId) {
     }
     this.requestUpdate();
 }
-//_______________________________________________________________________________________________________________________________________   
 
+//_______________________________________________________________________________________________________________________________________   
+// Method to empty the cart//
 emptyCart() {
     this.cartItems = [];
     this.requestUpdate();
 }
-//_______________________________________________________________________________________________________________________________________   
-
-removeFromCart(productId) {
-    const itemIndex = this.cartItems.findIndex(item => item.id === productId);
-    if (itemIndex > -1) {
-        if (this.cartItems[itemIndex].quantity > 1) {
-            this.cartItems[itemIndex].quantity -= 1;
-            this.cartItems[itemIndex].subtotal = this.cartItems[itemIndex].quantity * this.cartItems[itemIndex].price;
-        } else {
-            this.cartItems = this.cartItems.filter(item => item.id !== productId);
-        }
-    }
-    this.requestUpdate();
-}
 
 //_______________________________________________________________________________________________________________________________________   
-
+// Add a product and dont repeat them //
 addToCart(product) {
     const cartItem = this.cartItems.find(item => item.id === product.id);
     if (cartItem) {
@@ -545,4 +540,5 @@ addToCart(product) {
 
 //_______________________________________________________________________________________________________________________________________   
 }
+// defining the label //
 customElements.define('my-element', Myelement);
