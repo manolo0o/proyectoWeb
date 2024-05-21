@@ -9,7 +9,8 @@ class Myelement extends LitElement  {
             activeCategory: { type: String }, //This proppertie load the categories, when we change his value, they start to render the product from the category that was selected.
             view: { type: String }, // This one is for change the views when u click on the menu.
             cartItems: { type: Array }, // This is an arrray that contain the elements we choose in the store and then reflects them on the cart.
-            products: { type: Array } // This one its an array too, the difference is that this one contain all the products that we hace from a json or font of data.
+            products: { type: Array }, // This one its an array too, the difference is that this one contain all the products that we hace from a json or font of data.
+            menuOpen: { type: Boolean }
         };
     }
 
@@ -22,6 +23,8 @@ class Myelement extends LitElement  {
         this.cartItems = []; // Starts as an empty array, and then, load the products that wheee choose on the cart view
         this.products = []; // Its like the one above, just with all the products that we have in the json files.
         this.loadProducts(); // Call the method loadProducts for load all the items from the json file an then, reflect it on the proppertie 'products'
+        this.menuOpen = false;  // Initialize menuOpen to false
+        this.loadProducts();
     }
     connectedCallback() { // we call this method when we need to conect the DOM (Document Object Model).
         super.connectedCallback(); 
@@ -114,6 +117,7 @@ class Myelement extends LitElement  {
         border-bottom-right-radius:.7rem;
         box-shadow:0 1rem 0 var(--clr-white);
     }
+
     .button__Category.active::after{
         content:'';
         position:absolute;
@@ -158,6 +162,7 @@ class Myelement extends LitElement  {
         border-bottom-right-radius:.7rem;
         box-shadow:0 1rem 0 var(--clr-white);
     }
+
     .cart__Button.active::after{
         content:'';
         position:absolute;
@@ -377,17 +382,106 @@ class Myelement extends LitElement  {
         margin-right:.3rem;
         font-size:1.1rem;
     }
-    `;
+    .header__Mobile{
+        display:none;
+    }
+    .close__menue{
+        display:none;
+    }
+    /*_______________________________________________________________________________________________________________________________________*/  
+    /* MEDIAQUIERIE*/
+    @media screen and (max-width: 700px){
+        .wrapper{
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+
+        }
+        .logo{
+            font-size:1.5rem;
+            margin-bottom:0;
+        }
+        aside{
+            position:fixed;
+            z-index:9;
+            background-color:var(--clr-main);
+            left:0;
+            box-shadow:0 0 0 100vmax rgba(0, 0, 0, .75);
+            transform:translateX(-100%);
+            opacity:0;
+            visibility:hidden;
+            transition:.2s;
+        }
+        .aside-visible{
+            transform:translateX(0%);
+            opacity:1;
+            visibility:visible;
+        }
+        main{
+            margin:1rem;
+            padding:2rem;
+        }
+        .product__container{
+            grid-template-columns:1fr;
+        }
+
+        .button__Category.active::before,
+        .button__Category.active::after,
+        .cart__Button.active::before,
+        .cart__Button.active::after{
+            display:none
+        }
+        .cart__Button.active{
+            width:82%;
+        }
+        .header__Mobile{
+            display:flex;
+            padding:1rem;
+            justify-content:space-between;
+            align-items:ceneter;
+        }
+        .header__Mobile .logo{
+            color:var(--clr-white);
+        }
+
+        .open__menue,
+        .close__menue{
+            background-color:transparent;
+            color:var(--clr-white);
+            border:none;
+            cursor:pointer;
+        }
+        .menu__svg{
+            width:2.5rem;
+        }
+        .close__menue{
+            display:block;
+            height:0;
+        }
+        .header__menue{
+            display:flex;
+        }
+    }
+    `; 
 
 //_______________________________________________________________________________________________________________________________________   
 // Principal Html //
     render() {
         return html`
             <div class="wrapper">
-                <aside>
-                    <header>
-                        <h1 class="logo">CampusShop</h1>
-                    </header>
+            <header class="header__Mobile">
+                <h1 class="logo">CampusShop</h1>
+                <button class="open__menue" @click="${this.openMenu}">
+                    <img class="menu__svg" src="./public/menu.svg" alt="">
+                </button>
+            </header>
+            <aside class="${this.menuOpen ? 'aside-visible' : ''}">
+                <header class="header__menue">
+                    <h1 class="logo">CampusShop</h1>
+                    <button class="close__menue" @click="${this.closeMenu}">
+                        <img class="closeMenu__svg" src="./public/closeMenu__svg.svg" alt="">
+                    </button>
+                </header>
                     <nav>
                         <ul class="menue">
                             <li><button class="button__Category ${this.activeCategory === 'all' ? 'active' : ''}" @click=${() => this.changeCategory('all')}>All Products</button></li>
@@ -418,6 +512,7 @@ class Myelement extends LitElement  {
     viewCart() {
         this.activeCategory = null;
         this.view = 'cart';
+        this.menuOpen = false; // Close the menu when the cart is viewed
         this.requestUpdate();
     }
 
@@ -426,6 +521,7 @@ class Myelement extends LitElement  {
     changeCategory(category) {
         this.activeCategory = category;
         this.view = 'products';
+        this.menuOpen = false; // Close the menu when a category is selected
         this.requestUpdate();
     }
 
@@ -535,6 +631,20 @@ addToCart(product) {
             { ...product, quantity: 1, subtotal: product.price }
         ];
     }
+    this.requestUpdate();
+}
+
+//_______________________________________________________________________________________________________________________________________   
+
+openMenu() {
+    this.menuOpen = true;
+    this.requestUpdate();
+}
+
+//_______________________________________________________________________________________________________________________________________   
+
+closeMenu() {
+    this.menuOpen = false;
     this.requestUpdate();
 }
 
