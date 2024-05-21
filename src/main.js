@@ -1,6 +1,5 @@
 // IMPORTING LIT ELEMENTS THAT WE ARE GONNA USE ON THE PROJECT
 import { LitElement, css, html } from 'lit'
-
 //_______________________________________________________________________________________________________________________________________
 // Propperties
 class Myelement extends LitElement  {
@@ -193,9 +192,8 @@ class Myelement extends LitElement  {
         color:var(--clr-main);
         padding:0 .25rem;
         border-radius:.25rem;
+        border:black 1.5px solid;
     }
-
-
 
     .menue{
         list-style:none;
@@ -370,9 +368,10 @@ class Myelement extends LitElement  {
         
     }
     .cart__Actions_Buy:hover{
-        background-color:gray;
-        
-    }
+        background-color:var(--clr-white);
+        color:gray;
+        border:2px solid gray;        
+    } 
 
     .kitty{
         display:flex;
@@ -395,7 +394,6 @@ class Myelement extends LitElement  {
             min-height:100vh;
             display:flex;
             flex-direction:column;
-
         }
         .logo{
             font-size:1.5rem;
@@ -405,12 +403,15 @@ class Myelement extends LitElement  {
             position:fixed;
             z-index:9;
             background-color:var(--clr-main);
-            left:0;
+            left:0; /* Ajustado para que el aside ocupe todo el ancho */
             box-shadow:0 0 0 100vmax rgba(0, 0, 0, .75);
             transform:translateX(-100%);
             opacity:0;
             visibility:hidden;
             transition:.2s;
+            width:50%; /* Asegura que el aside ocupe todo el ancho */
+            display:flex;
+            flex-direction:column;
         }
         .aside-visible{
             transform:translateX(0%);
@@ -419,12 +420,11 @@ class Myelement extends LitElement  {
         }
         main{
             margin:1rem;
-            padding:2rem;
+            padding:1.5rem;
         }
         .product__container{
             grid-template-columns:1fr;
         }
-
         .button__Category.active::before,
         .button__Category.active::after,
         .cart__Button.active::before,
@@ -432,18 +432,26 @@ class Myelement extends LitElement  {
             display:none
         }
         .cart__Button.active{
-            width:82%;
+            width:84%; /* Asegura que el botón ocupe todo el ancho */
+        }
+        .cart__Button:hover{
+            width:84%;
         }
         .header__Mobile{
             display:flex;
             padding:1rem;
             justify-content:space-between;
-            align-items:ceneter;
+            align-items:center;
         }
         .header__Mobile .logo{
             color:var(--clr-white);
         }
-
+        .menue{
+            gap:2rem;
+            padding:0;
+            margin:0; /* Elimina el margen de la lista */
+            width:100%; /* Asegura que la lista ocupe todo el ancho */
+        }
         .open__menue,
         .close__menue{
             background-color:transparent;
@@ -460,6 +468,65 @@ class Myelement extends LitElement  {
         }
         .header__menue{
             display:flex;
+            width:100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ul{
+            margin:0;
+            padding:0; /* Elimina el padding de la lista */
+            width:100%; /* Asegura que la lista ocupe todo el ancho */
+        }
+        nav{
+            width:100%; /* Asegura que el nav ocupe todo el ancho */
+        }
+        .menue {
+            list-style:none;
+            padding:0; /* Elimina el padding de la lista */
+            margin:0; /* Elimina el margen de la lista */
+            width:100%; /* Asegura que la lista ocupe todo el ancho */
+        }
+        .button__Category{
+            width:100%; /* Asegura que los botones ocupen todo el ancho */
+        }
+        .cart__Button{
+            width:84%; /* Asegura que los botones ocupen todo el ancho */
+        }
+
+        .cart__Image{
+            width: 40%; /* Asegura que el botón ocupe todo el ancho */
+            margin-bottom:1rem;
+        }
+        .product__Cart{
+            padding: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .principal__Title {
+            margin-bottom: 1.5rem;
+        }
+        .cart__Actions_Right {
+            display: flex;
+            width: 64%;
+            margin-left: 1rem;
+        }
+        .cart__Actions_Delete {
+            padding:.9rem;
+        }
+        .content__Product{
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            width: 46%;
+        }
+
+        .cart__Amount,
+        .cart__Price,
+        .cart__Subtotal{
+            font-size:.8rem;
+            margin-right: .5rem;
+        }
+   
+        .cart__Delete img{
+            width:1.5rem;
         }
     }
     `; 
@@ -589,7 +656,7 @@ renderCart() {
                         <p>Total:</p>
                         <p>$${total}</p>
                     </div>
-                    <button class="cart__Actions_Buy">Buy now!</button>
+                    <button class="cart__Actions_Buy" @click=${() => this.alert(Swal)}>Buy now!</button>
                 </div>
             </div>
         ` : html`<div class="kitty"><p>Tu carrito está vacío. . .</p><img class="Cat"src="./public/Cat.svg" alt=""></div>`}
@@ -621,6 +688,7 @@ emptyCart() {
 //_______________________________________________________________________________________________________________________________________   
 // Add a product and dont repeat them //
 addToCart(product) {
+    added()
     const cartItem = this.cartItems.find(item => item.id === product.id);
     if (cartItem) {
         cartItem.quantity += 1;
@@ -648,7 +716,29 @@ closeMenu() {
     this.requestUpdate();
 }
 
+
 //_______________________________________________________________________________________________________________________________________   
 }
 // defining the label //
 customElements.define('my-element', Myelement);
+
+//_______________________________________________________________________________________________________________________________________   
+//mergent window//
+
+const added = async () => { 
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Succesfully Added :D"
+      });
+}
