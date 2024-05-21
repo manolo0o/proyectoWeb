@@ -366,6 +366,14 @@ class Myelement extends LitElement  {
         
     }
 
+    .kitty{
+        display:flex;
+        align-items:center;
+    }
+    .kitty p{
+        margin-right:.3rem;
+        font-size:1.1rem;
+    }
     `;
 
 //_______________________________________________________________________________________________________________________________________   
@@ -438,7 +446,7 @@ class Myelement extends LitElement  {
 //_______________________________________________________________________________________________________________________________________   
 
 renderCart() {
-    const total = this.cartItems.reduce((acc, item) => acc + item.price, 0);
+    const total = this.cartItems.reduce((acc, item) => acc + item.subtotal, 0);
 
     return html`
         <h2 class="principal__Title">Carrito de Compras</h2>
@@ -453,15 +461,15 @@ renderCart() {
                     </div>
                     <div class="cart__Amount">
                         <small>Amount</small>
-                        <p>1</p>
+                        <p>${item.quantity}</p>
                     </div>
                     <div class="cart__Price">
                         <small>Price</small>
-                        <p>${item.price}</p>
+                        <p>$${item.price}</p>
                     </div>
                     <div class="cart__Subtotal">
                         <small>Subtotal</small>
-                        <p>${item.price}</p>
+                        <p>$${item.subtotal}</p>
                     </div>
                     <button class="cart__Delete" @click=${() => this.removeFromCart(item.id)}>
                         <img src="./public/icon.svg" alt="">
@@ -481,27 +489,60 @@ renderCart() {
                     <button class="cart__Actions_Buy">Buy now!</button>
                 </div>
             </div>
-        ` : html`<p>Tu carrito está vacío :( </p>`}
+        ` : html`<div class="kitty"><p>Tu carrito está vacío. . .</p><img class="Cat"src="./public/Cat.svg" alt=""></div>`}
     `;
 }
+//_______________________________________________________________________________________________________________________________________   
 
 removeFromCart(productId) {
-    this.cartItems = this.cartItems.filter(item => item.id !== productId);
+    const itemIndex = this.cartItems.findIndex(item => item.id === productId);
+    if (itemIndex > -1) {
+        if (this.cartItems[itemIndex].quantity > 1) {
+            this.cartItems[itemIndex].quantity -= 1;
+            this.cartItems[itemIndex].subtotal = this.cartItems[itemIndex].quantity * this.cartItems[itemIndex].price;
+        } else {
+            this.cartItems = this.cartItems.filter(item => item.id !== productId);
+        }
+    }
     this.requestUpdate();
 }
+//_______________________________________________________________________________________________________________________________________   
 
 emptyCart() {
     this.cartItems = [];
     this.requestUpdate();
 }
-
 //_______________________________________________________________________________________________________________________________________   
 
-    addToCart(product) {
-        this.cartItems = [...this.cartItems, product];
-        this.requestUpdate();
+removeFromCart(productId) {
+    const itemIndex = this.cartItems.findIndex(item => item.id === productId);
+    if (itemIndex > -1) {
+        if (this.cartItems[itemIndex].quantity > 1) {
+            this.cartItems[itemIndex].quantity -= 1;
+            this.cartItems[itemIndex].subtotal = this.cartItems[itemIndex].quantity * this.cartItems[itemIndex].price;
+        } else {
+            this.cartItems = this.cartItems.filter(item => item.id !== productId);
+        }
     }
-
+    this.requestUpdate();
 }
+
 //_______________________________________________________________________________________________________________________________________   
+
+addToCart(product) {
+    const cartItem = this.cartItems.find(item => item.id === product.id);
+    if (cartItem) {
+        cartItem.quantity += 1;
+        cartItem.subtotal = cartItem.quantity * cartItem.price;
+    } else {
+        this.cartItems = [
+            ...this.cartItems,
+            { ...product, quantity: 1, subtotal: product.price }
+        ];
+    }
+    this.requestUpdate();
+}
+
+//_______________________________________________________________________________________________________________________________________   
+}
 customElements.define('my-element', Myelement);
